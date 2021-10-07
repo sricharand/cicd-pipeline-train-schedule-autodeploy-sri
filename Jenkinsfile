@@ -2,9 +2,11 @@ pipeline {
     agent any
     environment {
         //be sure to replace "bhavukm" with your own Docker Hub username
-        DOCKER_IMAGE_NAME = "bhavukm/train-schedule"
+        DOCKER_IMAGE_NAME = "sulavkumar/train-schedule"
     }
+     
     stages {
+       
         stage('Build') {
             steps {
                 echo 'Running build automation'
@@ -13,9 +15,7 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-            when {
-                branch 'master'
-            }
+         
             steps {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
@@ -26,9 +26,7 @@ pipeline {
             }
         }
         stage('Push Docker Image') {
-            when {
-                branch 'master'
-            }
+       
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
@@ -39,9 +37,7 @@ pipeline {
             }
         }
         stage('CanaryDeploy') {
-            when {
-                branch 'master'
-            }
+            
             environment { 
                 CANARY_REPLICAS = 1
             }
@@ -54,9 +50,7 @@ pipeline {
             }
         }
         stage('DeployToProduction') {
-            when {
-                branch 'master'
-            }
+            
             environment { 
                 CANARY_REPLICAS = 0
             }
