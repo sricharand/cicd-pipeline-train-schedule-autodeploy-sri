@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "baselrashed/train-schedule"
+        DOCKER_IMAGE_NAME = "brashed/train-schedule"
         DOCKER_HUB_CRED = credentials('DOKCER_REG_ACC')
     }
     stages {
@@ -31,10 +31,10 @@ pipeline {
             }
             steps {
                 script {
-                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'DOCKER_HUB_CRED', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-                        sh "docker login -u $USERNAME -p $PASSWORD"
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
+                    docker.withRegistry('', 'DOKCER_REG_ACC') {//withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'DOKCER_REG_ACC', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                        sh "docker tag ${DOCKER_IMAGE_NAME}:latest ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}"
+                        sh "docker push ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}"
+                        sh "docker push ${DOCKER_IMAGE_NAME}:latest"
                     }
                 }
             }
