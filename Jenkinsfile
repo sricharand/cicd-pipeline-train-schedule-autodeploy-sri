@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when {
-                branch '*/master'
+                branch 'master'
             }
             steps {
                 script {
@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             when {
-                branch '*/master'
+                branch 'master'
             }
             steps {
                 script {
@@ -39,7 +39,6 @@ pipeline {
                 }
             }
         }
-        /*
         stage('CanaryDeploy') {
             when {
                 branch 'master'
@@ -48,13 +47,18 @@ pipeline {
                 CANARY_REPLICAS = 1
             }
             steps {
-                kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                    configs: 'train-schedule-kube-canary.yml',
-                    enableConfigSubstitution: true
-                )
+                script {
+                            sh """
+                              gcloud auth activate-service-account --key-file=/home/edureka/Downloads/ingka-cff-slm-dev-923c78677045.json --project=ingka-cff-slm-dev
+                              gcloud container clusters get-credentials slm-cluster --zone europe-west4-a --project ingka-cff-slm-dev
+
+                              kubectl apply -f train-schedule-kube-canary.yml
+
+                              """
+                }      
             }
         }
+        /*
         stage('DeployToProduction') {
             when {
                 branch 'master'
