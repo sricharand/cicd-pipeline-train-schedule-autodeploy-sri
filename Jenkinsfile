@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_IMAGE_NAME = "baselrashed/train-schedule"
+        DOCKER_HUB_CRED = credentials('DOKCER_REG_ACC')
     }
     stages {
         stage('Build') {
@@ -30,7 +31,8 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'DOKCER_REG_ACC') {
+                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'DOCKER_HUB_CRED', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                        sh "docker login -u $USERNAME -p $PASSWORD"
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
