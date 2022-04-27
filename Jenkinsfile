@@ -14,11 +14,13 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                script {
-                    app = docker.build(DOCKER_IMAGE_NAME)
-                    app.inside {
-                        sh 'echo Hello, World!'
-                    }
+                sh 'sudo docker build -t sagjayar/train-schedule:latest .'
+                sh 'echo Hello, World!'
+//                 script {
+//                     app = docker.build(DOCKER_IMAGE_NAME)
+//                     app.inside {
+//                         sh 'echo Hello, World!'
+//                     }
                 }
             }
         }
