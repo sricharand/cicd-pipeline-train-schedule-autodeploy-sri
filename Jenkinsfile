@@ -21,7 +21,8 @@ pipeline {
                         sh 'echo Hello, World!'
                     }
                 }
-            }            
+            }    
+        }
 //             steps {
 //                 sh 'sudo docker build -t sagjayar/train-schedule:latest .'
 //                 sh 'echo Hello, World!'
