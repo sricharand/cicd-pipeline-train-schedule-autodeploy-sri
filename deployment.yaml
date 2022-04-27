@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: addressbook
+spec:
+ replicas: 2
+ template:
+  metadata:
+   labels:
+    app: ab
+  spec:
+   containers:
+   - name: addressbook
+     image: sagjayar/train-schedule:latest
+     ports:
+     - containerPort: 8080
+     env: 
+     - name: ALLOW_EMPTY_PASSWORD
+       value: "yes"
+ selector:
+  matchLabels:
+   app: ab
