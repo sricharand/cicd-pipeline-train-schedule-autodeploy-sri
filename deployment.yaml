@@ -11,7 +11,7 @@ spec:
   spec:
    containers:
    - name: train-schedule
-     image: sagjayar/train-schedule
+     image: sagjayar/train-schedule:latest
      ports:
      - containerPort: 8080
      env: 
