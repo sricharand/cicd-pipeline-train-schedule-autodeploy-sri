@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: addressbook
+ name: Train-Schedule
 spec:
  replicas: 2
  template:
@@ -10,8 +10,8 @@ spec:
     app: ab
   spec:
    containers:
-   - name: addressbook
-     image: sagjayar/train-schedule:latest
+   - name: train_schedule
+     image: sagjayar/ab:latest
      ports:
      - containerPort: 8080
      env: 
