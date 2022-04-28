@@ -11,7 +11,7 @@ spec:
   spec:
    containers:
    - name: train_schedule
-     image: sagjayar/ab:latest
+     image: nginx
      ports:
      - containerPort: 8080
      env: 
