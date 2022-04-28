@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: Train-Schedule
+ name: train-schedule
 spec:
  replicas: 2
  template:
@@ -10,7 +10,7 @@ spec:
     app: ab
   spec:
    containers:
-   - name: train_schedule
+   - name: train-schedule
      image: nginx
      ports:
      - containerPort: 8080
