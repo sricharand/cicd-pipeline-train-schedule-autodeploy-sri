@@ -27,6 +27,7 @@ pipeline {
                     }
                 }
             }
+
         }        
         stage('DeployToK8s') {
             steps {
