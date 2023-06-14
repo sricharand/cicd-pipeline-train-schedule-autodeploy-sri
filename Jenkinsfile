@@ -31,7 +31,7 @@ pipeline {
         }        
         stage('DeployToK8s') {
             steps {
-                withKubeConfig([credentialsId: 'jenkins-deploy', serverUrl: 'https://172.31.2.89:6443']) {
+                withKubeConfig([credentialsId: 'Kubectl-CRED', serverUrl: 'https://172.31.2.89:6443']) {
                  sh 'kubectl apply -f train-schedule-service.yml'
                  sh 'kubectl apply -f train-schedule-deployment.yml'
                 }
