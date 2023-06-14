@@ -8,5 +8,5 @@ spec:
   selector:
     app: train-sch
   ports:
-  - port: 8050
-    targetPort: 8050
+  - port: 8080
+    targetPort: 8080
