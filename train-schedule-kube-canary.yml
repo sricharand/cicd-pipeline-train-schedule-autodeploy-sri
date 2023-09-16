@@ -1,3 +1,4 @@
+---
 kind: Service
 apiVersion: v1
 metadata:
@@ -8,14 +9,13 @@ spec:
     app: train-schedule
     track: canary
   ports:
-  - protocol: TCP
-    port: 8080
-    nodePort: 8081
+    - protocol: TCP
+      port: 8080
+      nodePort: 30000
 
 ---
-
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: train-schedule-deployment-canary
   labels:
@@ -36,7 +36,7 @@ spec:
       - name: train-schedule
         image: $DOCKER_IMAGE_NAME:$BUILD_NUMBER
         ports:
-        - containerPort: 8080
+          - containerPort: 8080
         livenessProbe:
           httpGet:
             path: /
