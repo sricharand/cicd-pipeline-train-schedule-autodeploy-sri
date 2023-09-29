@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         //be sure to replace "sakhariha" with your own Docker Hub username
-        sakhariha/new-repo = "sakhariha/train-schedule"
+        sakhariha/new-repo:tagname = "sakhariha/train-schedule"
     }
     stages {
         stage('Build') {
@@ -18,7 +18,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build(sakhariha/new-repo)
+                    app = docker.build(sakhariha/new-repo:tagname)
                     app.inside {
                         sh 'echo Hello, World!'
                     }
