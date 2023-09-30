@@ -5,20 +5,10 @@ pipeline {
         DOCKER_IMAGE_NAME = "sandeep10rana/train-schedule"
     }
     stages {
-
-        stage('Checkout') {
-            steps {
-                script {
-                    // Use your Git credentials ID configured in Jenkins
-                    checkout([$class: 'GitSCM', branches: [[name: '*/pipeline']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[credentialsId: 'sandeep15rana', url: 'https://github.com/sandeep15rana/edureka-project.git']]])
-                }
-            }
-
-    
         stage('Build') {
             steps {
                 echo 'Running build automation'
-                sh ./gradlew build --no-daemon
+                sh './gradlew build --no-daemon'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
         }
