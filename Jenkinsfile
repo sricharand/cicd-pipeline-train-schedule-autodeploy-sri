@@ -23,9 +23,9 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
-            when {
-                branch 'pipeline'
-            }
+            //when {
+            //    branch 'pipeline'
+            //}
             steps {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
