@@ -1,0 +1,299 @@
+Started by user Jenkins Admin
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/edureka-pipeline
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] checkout
+The recommended git tool is: NONE
+using credential github_login
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/edureka-pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/sandeep15rana/edureka-project.git # timeout=10
+Fetching upstream changes from https://github.com/sandeep15rana/edureka-project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://github.com/sandeep15rana/edureka-project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/pipeline^{commit} # timeout=10
+Checking out Revision c23bc258c10b431acc934ba8106862dc156f99d5 (refs/remotes/origin/pipeline)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f c23bc258c10b431acc934ba8106862dc156f99d5 # timeout=10
+Commit message: "modified Jenkinsfile added"
+ > git rev-list --no-walk 40357cab66142888902c8bedb032e01b5b64d2da # timeout=10
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] echo
+Running build automation
+[Pipeline] sh
++ ./gradlew build --no-daemon
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.codehaus.groovy.vmplugin.v7.Java7$1 (file:/var/jenkins_home/.gradle/wrapper/dists/gradle-6.0-bin/8ccdmgaih4za71r0tlxhaz33m/gradle-6.0/lib/groovy-all-1.3-2.5.8.jar) to constructor java.lang.invoke.MethodHandles$Lookup(java.lang.Class,int)
+WARNING: Please consider reporting this to the maintainers of org.codehaus.groovy.vmplugin.v7.Java7$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+> Task :nodeSetup UP-TO-DATE
+> Task :npmSetup UP-TO-DATE
+
+> Task :npmInstall
+npm WARN npm npm does not support Node.js v12.13.1
+npm WARN npm You should probably upgrade to a newer version of node as we
+npm WARN npm can't make any promises that npm will work with this version.
+npm WARN npm Supported releases of Node.js are the latest release of 4, 6, 7, 8, 9.
+npm WARN npm You can find the latest version at https://nodejs.org/
+npm WARN deprecated debuglog@1.0.1: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+npm WARN deprecated gentle-fs@2.0.1: This package is deprecated and will not be receiving further updates
+npm WARN deprecated fs-vacuum@1.2.10: This module is no longer maintained
+npm WARN deprecated ini@1.3.5: Please update to ini >=1.3.6 to avoid a prototype pollution issue
+npm WARN deprecated libcipm@1.6.0: This module is no longer used. Please see @npmcli/arborist if you would like to build and reify package trees programmatically.
+npm WARN deprecated read-package-tree@5.1.6: The functionality that this package provided is now in @npmcli/arborist
+npm WARN deprecated request@2.83.0: request has been deprecated, see https://github.com/request/request/issues/3142
+npm WARN deprecated readdir-scoped-modules@1.0.2: This functionality has been moved to @npmcli/fs
+npm WARN deprecated uuid@3.2.1: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated tar@2.2.2: This version of tar is no longer supported, and will not receive security updates. Please upgrade asap.
+npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+npm WARN deprecated node-fetch-npm@2.0.4: This module is not used anymore, npm uses minipass-fetch for its fetch implementation now
+npm WARN deprecated socks@1.1.10: If using 2.x branch, please upgrade to at least 2.1.6 to avoid a serious bug with socket data flow and an import issue introduced in 2.1.0
+npm WARN deprecated har-validator@5.0.3: this library is no longer supported
+npm WARN deprecated hawk@6.0.2: This module moved to @hapi/hawk. Please make sure to switch over as this distribution is no longer supported and may contain bugs and critical security issues.
+npm WARN deprecated boom@4.3.1: This version has been deprecated in accordance with the hapi support policy (hapi.im/support). Please upgrade to the latest version to get the best features, bug fixes, and security patches. If you are unable to upgrade at this time, paid support is available for older versions (hapi.im/commercial).
+npm WARN deprecated sntp@2.1.0: This module moved to @hapi/sntp. Please make sure to switch over as this distribution is no longer supported and may contain bugs and critical security issues.
+npm WARN deprecated cryptiles@3.1.4: This version has been deprecated in accordance with the hapi support policy (hapi.im/support). Please upgrade to the latest version to get the best features, bug fixes, and security patches. If you are unable to upgrade at this time, paid support is available for older versions (hapi.im/commercial).
+npm WARN deprecated hoek@4.2.1: This version has been deprecated in accordance with the hapi support policy (hapi.im/support). Please upgrade to the latest version to get the best features, bug fixes, and security patches. If you are unable to upgrade at this time, paid support is available for older versions (hapi.im/commercial).
+npm WARN deprecated boom@5.2.0: This version has been deprecated in accordance with the hapi support policy (hapi.im/support). Please upgrade to the latest version to get the best features, bug fixes, and security patches. If you are unable to upgrade at this time, paid support is available for older versions (hapi.im/commercial).
+npm WARN npm@5.8.0 had bundled packages that do not match the required version(s). They have been replaced with non-bundled versions.
+
+up to date in 65.188s
+
+> Task :npm_test
+npm WARN npm npm does not support Node.js v12.13.1
+npm WARN npm You should probably upgrade to a newer version of node as we
+npm WARN npm can't make any promises that npm will work with this version.
+npm WARN npm Supported releases of Node.js are the latest release of 4, 6, 7, 8, 9.
+npm WARN npm You can find the latest version at https://nodejs.org/
+
+> cicd-pipeline-train-schedule-git@0.0.0 test /var/jenkins_home/workspace/edureka-pipeline
+> mocha
+
+
+
+  Index Page
+[0mGET / [32m200 [0m2018.030 ms - 829[0m
+    ✓ renders successfully (2044ms)
+
+  Trains API
+[0mGET /trains [32m200 [0m2.769 ms - 1093[0m
+    ✓ returns data successfully
+
+
+  2 passing (2s)
+
+
+> Task :npm_build
+npm WARN npm npm does not support Node.js v12.13.1
+npm WARN npm You should probably upgrade to a newer version of node as we
+npm WARN npm can't make any promises that npm will work with this version.
+npm WARN npm Supported releases of Node.js are the latest release of 4, 6, 7, 8, 9.
+npm WARN npm You can find the latest version at https://nodejs.org/
+
+> Task :zip
+> Task :build
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 7.0.
+Use '--warning-mode all' to show the individual deprecation warnings.
+See https://docs.gradle.org/6.0/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 3m 3s
+6 actionable tasks: 4 executed, 2 up-to-date
+[Pipeline] archiveArtifacts
+Archiving artifacts
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker Image)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker build -t sandeep10rana/train-schedule .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 31B 0.1s done
+#1 ...
+
+#2 [internal] load .dockerignore
+#2 transferring context: 34B 0.1s done
+#2 DONE 1.1s
+
+#1 [internal] load build definition from Dockerfile
+#1 DONE 1.5s
+
+#3 [internal] load metadata for docker.io/library/node:carbon
+#3 DONE 5.1s
+
+#4 [1/5] FROM docker.io/library/node:carbon@sha256:a681bf74805b80d03eb21a6c0ef168a976108a287a74167ab593fc953aac34df
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 32B
+#5 transferring context: 194.97kB 1.3s done
+#5 DONE 2.0s
+
+#6 [2/5] WORKDIR /usr/src/app
+#6 CACHED
+
+#7 [3/5] COPY package*.json ./
+#7 CACHED
+
+#8 [4/5] RUN npm install
+#8 CACHED
+
+#9 [5/5] COPY . .
+#9 DONE 5.2s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 1.0s done
+#10 writing image sha256:ba991045944f54c10e670b63075a5dac8365e7a4530396f513f09cac6b63582c
+#10 writing image sha256:ba991045944f54c10e670b63075a5dac8365e7a4530396f513f09cac6b63582c 0.2s done
+#10 naming to docker.io/sandeep10rana/train-schedule
+#10 naming to docker.io/sandeep10rana/train-schedule 0.2s done
+#10 DONE 2.2s
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker inspect -f . sandeep10rana/train-schedule
+.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] withDockerContainer
+Jenkins seems to be running inside container c1707f82da015a16d5999c535101de5eb62773b6954e6b2b9d17ee956d845d31
+$ docker run -t -d -u 1000:1000 -w /var/jenkins_home/workspace/edureka-pipeline --volumes-from c1707f82da015a16d5999c535101de5eb62773b6954e6b2b9d17ee956d845d31 -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** sandeep10rana/train-schedule cat
+$ docker top 3a5aa3152e3a1c2b96d3f7e1861dccb8ca8ff1e9061eabd743530a0b0883b358 -eo pid,comm
+ERROR: The container started but didn't run the expected command. Please double check your ENTRYPOINT does execute the command passed as docker run argument, as required by official docker images (see https://github.com/docker-library/official-images#consistency for entrypoint consistency requirements).
+Alternatively you can force image entrypoint to be disabled by adding option `--entrypoint=''`.
+[Pipeline] {
+[Pipeline] sh
++ echo Hello, World!
+Hello, World!
+[Pipeline] }
+$ docker stop --time=1 3a5aa3152e3a1c2b96d3f7e1861dccb8ca8ff1e9061eabd743530a0b0883b358
+$ docker rm -f --volumes 3a5aa3152e3a1c2b96d3f7e1861dccb8ca8ff1e9061eabd743530a0b0883b358
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push Docker Image)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withDockerRegistry
+$ docker login -u sandeep10rana -p ******** https://registry.hub.docker.com
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/jenkins_home/workspace/edureka-pipeline@tmp/51a88ed6-6a10-4575-9a2a-6436f4c6f0bb/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] {
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (CanaryDeploy)
+Stage "CanaryDeploy" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (DeployToProduction)
+Stage "DeployToProduction" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Also:   org.jenkinsci.plugins.workflow.actions.ErrorAction$ErrorId: c20703bd-5138-4d5d-87a1-37a5798ac72e
+groovy.lang.MissingPropertyException: No such property: app for class: groovy.lang.Binding
+	at groovy.lang.Binding.getVariable(Binding.java:63)
+	at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor.onGetProperty(SandboxInterceptor.java:285)
+	at org.kohsuke.groovy.sandbox.impl.Checker$7.call(Checker.java:375)
+	at org.kohsuke.groovy.sandbox.impl.Checker.checkedGetProperty(Checker.java:379)
+	at org.kohsuke.groovy.sandbox.impl.Checker.checkedGetProperty(Checker.java:355)
+	at org.kohsuke.groovy.sandbox.impl.Checker.checkedGetProperty(Checker.java:355)
+	at org.kohsuke.groovy.sandbox.impl.Checker.checkedGetProperty(Checker.java:355)
+	at org.kohsuke.groovy.sandbox.impl.Checker.checkedGetProperty(Checker.java:355)
+	at com.cloudbees.groovy.cps.sandbox.SandboxInvoker.getProperty(SandboxInvoker.java:29)
+	at org.jenkinsci.plugins.workflow.cps.LoggingInvoker.getProperty(LoggingInvoker.java:121)
+	at com.cloudbees.groovy.cps.impl.PropertyAccessBlock.rawGet(PropertyAccessBlock.java:20)
+	at WorkflowScript.run(WorkflowScript:37)
+	at org.jenkinsci.plugins.docker.workflow.Docker.withRegistry(Docker.groovy:41)
+	at ___cps.transform___(Native Method)
+	at com.cloudbees.groovy.cps.impl.PropertyishBlock$ContinuationImpl.get(PropertyishBlock.java:73)
+	at com.cloudbees.groovy.cps.LValueBlock$GetAdapter.receive(LValueBlock.java:30)
+	at com.cloudbees.groovy.cps.impl.PropertyishBlock$ContinuationImpl.fixName(PropertyishBlock.java:65)
+	at jdk.internal.reflect.GeneratedMethodAccessor148.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at com.cloudbees.groovy.cps.impl.ContinuationPtr$ContinuationImpl.receive(ContinuationPtr.java:72)
+	at com.cloudbees.groovy.cps.impl.ConstantBlock.eval(ConstantBlock.java:21)
+	at com.cloudbees.groovy.cps.Next.step(Next.java:83)
+	at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:152)
+	at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:146)
+	at org.codehaus.groovy.runtime.GroovyCategorySupport$ThreadCategoryInfo.use(GroovyCategorySupport.java:136)
+	at org.codehaus.groovy.runtime.GroovyCategorySupport.use(GroovyCategorySupport.java:275)
+	at com.cloudbees.groovy.cps.Continuable.run0(Continuable.java:146)
+	at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.access$001(SandboxContinuable.java:18)
+	at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.run0(SandboxContinuable.java:51)
+	at org.jenkinsci.plugins.workflow.cps.CpsThread.runNextChunk(CpsThread.java:187)
+	at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup.run(CpsThreadGroup.java:423)
+	at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:331)
+	at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:295)
+	at org.jenkinsci.plugins.workflow.cps.CpsVmExecutorService$2.call(CpsVmExecutorService.java:97)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at hudson.remoting.SingleLaneExecutorService$1.run(SingleLaneExecutorService.java:139)
+	at jenkins.util.ContextResettingExecutorService$1.run(ContextResettingExecutorService.java:28)
+	at jenkins.security.ImpersonatingExecutorService$1.run(ImpersonatingExecutorService.java:68)
+	at jenkins.util.ErrorLoggingExecutorService.lambda$wrap$0(ErrorLoggingExecutorService.java:51)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Finished: FAILURE
