@@ -1,45 +1,58 @@
 pipeline {
     agent any
+
     environment {
         // Be sure to replace "bhavukm" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "sandeep10rana/train-schedule"
     }
+
     stages {
         stage('Checkout') {
             steps {
                 script {
                     // Use your Git credentials ID configured in Jenkins
-                    checkout([$class: 'GitSCM', branches: [[name: '*/pipeline']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[credentialsId: 'github_login', url: 'https://github.com/sandeep15rana/edureka-project.git']]])
+                    checkout([$class: 'GitSCM', branches: [[name: '*/pipeline']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[credentialsId: 'sandeep15rana', url: 'https://github.com/sandeep15rana/edureka-project.git']]])
                 }
             }
         }
+
         stage('Build') {
             steps {
-                echo 'Running build automation'
-                sh './gradlew build --no-daemon'
-                archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+                script {
+                    echo 'Running build automation'
+                    sh './gradlew build --no-daemon'
+                    archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+                }
             }
         }
+
         stage('Build Docker Image') {
             steps {
                 script {
-                    def app = docker.build(DOCKER_IMAGE_NAME)
+                    def app
+                    withCredentials([usernamePassword(credentialsId: 'docker_hub_login', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        app = docker.build(DOCKER_IMAGE_NAME)
+                    }
                     app.inside {
                         sh 'echo Hello, World!'
                     }
                 }
             }
         }
+
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")
+                    withCredentials([usernamePassword(credentialsId: 'docker_hub_login', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        docker.withRegistry('', 'docker_hub_login') {
+                            app.push("${env.BUILD_NUMBER}")
+                            app.push("latest")
+                        }
                     }
                 }
             }
         }
+
         stage('CanaryDeploy') {
             environment { 
                 CANARY_REPLICAS = 1
@@ -52,6 +65,7 @@ pipeline {
                 )
             }
         }
+
         stage('DeployToProduction') {
             environment { 
                 CANARY_REPLICAS = 0
