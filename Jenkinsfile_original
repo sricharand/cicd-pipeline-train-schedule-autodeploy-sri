@@ -1,18 +1,10 @@
 pipeline {
     agent any
     environment {
-        // Be sure to replace "bhavukm" with your own Docker Hub username
+        //be sure to replace "bhavukm" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "sandeep10rana/train-schedule"
     }
     stages {
-        stage('Checkout') {
-            steps {
-                script {
-                    // Use your Git credentials ID configured in Jenkins
-                    checkout([$class: 'GitSCM', branches: [[name: '*/pipeline']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[credentialsId: 'github_login', url: 'https://github.com/sandeep15rana/edureka-project.git']]])
-                }
-            }
-        }
         stage('Build') {
             steps {
                 echo 'Running build automation'
@@ -21,9 +13,12 @@ pipeline {
             }
         }
         stage('Build Docker Image') {
+            when {
+                branch 'pipeline'
+            }
             steps {
                 script {
-                    def app = docker.build(DOCKER_IMAGE_NAME)
+                    app = docker.build(DOCKER_IMAGE_NAME)
                     app.inside {
                         sh 'echo Hello, World!'
                     }
@@ -31,6 +26,9 @@ pipeline {
             }
         }
         stage('Push Docker Image') {
+            when {
+                branch 'pipeline'
+            }
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
@@ -41,6 +39,9 @@ pipeline {
             }
         }
         stage('CanaryDeploy') {
+            when {
+                branch 'pipeline'
+            }
             environment { 
                 CANARY_REPLICAS = 1
             }
@@ -53,6 +54,9 @@ pipeline {
             }
         }
         stage('DeployToProduction') {
+            when {
+                branch 'pipeline'
+            }
             environment { 
                 CANARY_REPLICAS = 0
             }
@@ -73,4 +77,3 @@ pipeline {
         }
     }
 }
-
