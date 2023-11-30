@@ -8,6 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
+                chmod 777 /var/jenkins_home/.gradle/wrapper/dists/gradle-4.6-bin/4jp4stjndanmxuerzfseyb6wo/gradle-4.6/bin/gradle
                 sh './gradlew build '
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
             }
